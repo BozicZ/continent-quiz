@@ -34,9 +34,16 @@ const setRandomIndexes = (range, total) => {
 class Quiz extends Component {
   constructor(props) {
     super(props);
-    this.state = { questionNumber: 0, possibleAnswers: [] };
+    this.state = {
+      questionNumber: 0,
+      possibleAnswers: [],
+      score: 0,
+      isAnswerCorrect: "",
+      answerLocked: false
+    };
 
     this.submitAnswer = this.submitAnswer.bind(this);
+    this.onSelectAnswer = this.onSelectAnswer.bind(this);
   }
 
   componentDidMount() {
@@ -53,7 +60,6 @@ class Quiz extends Component {
         possibleAnswers: continentAnswers(this.props.questions[0].continent)
       });
     }
-
     if (
       prevState.questionNumber !== this.state.questionNumber &&
       this.state.questionNumber < 5
@@ -66,8 +72,27 @@ class Quiz extends Component {
     }
   }
 
+  onSelectAnswer(answer) {
+    if (this.state.answerLocked) {
+      this.props.questions[this.state.questionNumber].continent === answer
+        ? this.setState({
+            isAnswerCorrect: "correct",
+            score: this.state.score + 750,
+            answerLocked: true
+          })
+        : this.setState({
+            isAnswerCorrect: "incorrect",
+            answerLocked: true
+          });
+    }
+  }
+
   submitAnswer() {
-    this.setState({ questionNumber: this.state.questionNumber + 1 });
+    this.setState({
+      isAnswerCorrect: "",
+      answerLocked: false,
+      questionNumber: this.state.questionNumber + 1
+    });
   }
 
   render() {
@@ -91,7 +116,9 @@ class Quiz extends Component {
           <div>
             {this.state.possibleAnswers ? (
               this.state.possibleAnswers.map(item => (
-                <div key={item}>{item}</div>
+                <div onClick={() => this.onSelectAnswer(item)} key={item}>
+                  {item}
+                </div>
               ))
             ) : (
               <div>loading...</div>
