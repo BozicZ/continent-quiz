@@ -15,9 +15,8 @@ const continentAnswers = correct => {
     "Antarctica"
   ];
   let wrongAnswers = continents.filter(item => item !== correct);
-  console.log("wrong answers: ", wrongAnswers);
   let wrongIndexes = setRandomIndexes(wrongAnswers.length, 2);
-  return wrongIndexes.map(item => wrongAnswers[item]);
+  return wrongIndexes.map(item => wrongAnswers[item]).concat([correct]);
 };
 
 const setRandomIndexes = (range, total) => {
@@ -35,28 +34,35 @@ const setRandomIndexes = (range, total) => {
 class Quiz extends Component {
   constructor(props) {
     super(props);
-    this.state = { questionNumber: 0 };
+    this.state = { questionNumber: 0, possibleAnswers: [] };
 
     this.submitAnswer = this.submitAnswer.bind(this);
   }
 
   componentDidMount() {
     if (this.props.questions) {
-      console.log(this.props.questions[0].continent);
-      console.log(continentAnswers(this.props.questions[0].continent));
+      this.setState({
+        possibleAnswers: continentAnswers(this.props.questions[0].continent)
+      });
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.questions !== prevProps.questions) {
-      console.log(this.props.questions[0].continent);
+      this.setState({
+        possibleAnswers: continentAnswers(this.props.questions[0].continent)
+      });
     }
 
     if (
       prevState.questionNumber !== this.state.questionNumber &&
       this.state.questionNumber < 5
     ) {
-      console.log(this.props.questions[this.state.questionNumber].continent);
+      this.setState({
+        possibleAnswers: continentAnswers(
+          this.props.questions[this.state.questionNumber].continent
+        )
+      });
     }
   }
 
@@ -83,9 +89,13 @@ class Quiz extends Component {
             )}
           </div>
           <div>
-            <div>q1</div>
-            <div>q2</div>
-            <div>q3</div>
+            {this.state.possibleAnswers ? (
+              this.state.possibleAnswers.map(item => (
+                <div key={item}>{item}</div>
+              ))
+            ) : (
+              <div>loading...</div>
+            )}
           </div>
           <div className="next-button" onClick={this.submitAnswer}>
             NEXT
