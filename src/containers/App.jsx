@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps.quiz !== this.props.quiz) {
+    if (prevProps.quiz.questions !== this.props.quiz.questions) {
       console.log("quiz state changed ", this.props.quiz);
     }
   }
