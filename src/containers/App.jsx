@@ -25,24 +25,7 @@ class App extends Component {
   render() {
     const { children } = this.props;
 
-    return (
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/quiz/">Quiz</Link>
-            </li>
-            <li>
-              <Link to="/results/">Results</Link>
-            </li>
-          </ul>
-        </nav>
-        {children}
-      </div>
-    );
+    return <div>{children}</div>;
   }
 }
 
