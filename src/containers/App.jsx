@@ -1,8 +1,20 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import "..//App.scss";
+
+const setRandomIndexes = (range, total) => {
+  let count = 0;
+  let randomNumbers = [];
+  while (count < total) {
+    let nextNumber = Math.floor(Math.random() * range);
+    if (!randomNumbers.includes(nextNumber)) {
+      randomNumbers.push(nextNumber);
+      count++;
+    }
+  }
+  return randomNumbers;
+};
 
 class App extends Component {
   constructor(props) {
@@ -18,7 +30,17 @@ class App extends Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.quiz.questions !== this.props.quiz.questions) {
-      console.log("quiz state changed ", this.props.quiz);
+      const randomIndexes = setRandomIndexes(
+        this.props.quiz.questions.length,
+        5
+      );
+      const randomQuestions = randomIndexes.map(
+        item => this.props.quiz.questions[item]
+      );
+      this.props.dispatch({
+        type: "SET_RANDOM_QUESTIONS",
+        payload: randomQuestions
+      });
     }
   }
 
