@@ -6,6 +6,8 @@ const quizReducer = (state = {}, action) => {
       return { ...state, ...action.payload };
     case "FETCH_QUIZ_DATA_ERROR":
       return { ...state, ...action.payload };
+    case "SET_RANDOM_QUESTIONS":
+      return { ...state, randomQuestions: [...action.payload] };
     default:
       return state;
   }
