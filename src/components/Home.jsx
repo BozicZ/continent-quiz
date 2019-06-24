@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "../styles/home.scss";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { ReactComponent as HomeIcon } from "../svg/home.svg";
+import { ReactComponent as ShapesIcon } from "../svg/shapes.svg";
 
 class Home extends Component {
   constructor(props) {
@@ -23,7 +25,7 @@ class Home extends Component {
       <div>
         <h3>CONTINENT QUIZ</h3>
         <h1>Your Scores</h1>
-        <div>
+        <div className="score-list">
           {this.scores
             ? this.scores.map((item, index) => (
                 <div key={index} className="score-item">
@@ -37,12 +39,13 @@ class Home extends Component {
             : "No scores yet"}
         </div>
         <div className="bottom-section">
-          <div className="home-button">icon</div>
+          <HomeIcon className="home-button" />
+
           <div className="play-button">
-            <div>icon</div>
-            <h2>
+            <ShapesIcon className="play-icon" />
+            <p>
               <Link to="/quiz/">Play</Link>
-            </h2>
+            </p>
           </div>
         </div>
       </div>

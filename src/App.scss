@@ -4,6 +4,13 @@ h1,
 h2,
 h3 {
   margin: 0px;
+  color: #717171;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .App {

@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/result.scss";
 import { Link } from "react-router-dom";
+import { ReactComponent as LogoIcon } from "../svg/shapes.svg";
 
 const handleLocalStorage = (score, date) => {
   let scores = JSON.parse(localStorage.getItem("topScores"));
@@ -21,20 +22,20 @@ export default function Results(props) {
       <h3>VACATION QUIZ</h3>
       <h1>Results</h1>
       <div className="score-content">
-        <div className="finish-icon">icon</div>
+        <LogoIcon className="finish-icon" />
         <h1>Your Score</h1>
         <div className="total-score">{`${props.location.state.score} pts`}</div>
-        <div className="finish-button">
-          <Link
-            to="/"
-            onClick={() => {
-              const date = new Date();
-              handleLocalStorage(props.location.state.score, date.getTime());
-            }}
-          >
-            Finish
-          </Link>
-        </div>
+
+        <Link
+          className="finish-button"
+          to="/"
+          onClick={() => {
+            const date = new Date();
+            handleLocalStorage(props.location.state.score, date.getTime());
+          }}
+        >
+          Finish
+        </Link>
       </div>
     </div>
   );

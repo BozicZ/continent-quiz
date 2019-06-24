@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
+import { ReactComponent as ShapesIcon } from "../svg/shapes.svg";
+import { ReactComponent as CheckIcon } from "../svg/check.svg";
+import { ReactComponent as TimesIcon } from "../svg/times.svg";
 import "../styles/quiz.scss";
 import { Redirect } from "react-router-dom";
 
@@ -129,27 +131,47 @@ class Quiz extends Component {
               <p>loading...</p>
             )}
           </div>
-          <div>
-            {this.state.possibleAnswers ? (
-              this.state.possibleAnswers.map(item => (
-                <div
-                  onClick={() => this.onSelectAnswer(item)}
-                  key={item}
-                  className={
-                    this.state.currAnswer === item
-                      ? this.state.answerStatus
-                      : ""
-                  }
-                >
-                  {item}
-                </div>
-              ))
-            ) : (
-              <div>loading...</div>
-            )}
-          </div>
-          <div className="next-button" onClick={this.submitAnswer}>
-            NEXT
+          <div className="questions-control">
+            <div>
+              {this.state.possibleAnswers ? (
+                this.state.possibleAnswers.map(item => (
+                  <div
+                    onClick={() => this.onSelectAnswer(item)}
+                    key={item}
+                    className={`answer ${
+                      this.state.currAnswer === item
+                        ? this.state.answerStatus
+                        : ""
+                    }`}
+                  >
+                    <ShapesIcon className="icon" />
+                    {item}
+                    <CheckIcon
+                      className={`${
+                        this.props.questions[this.state.questionNumber]
+                          .continent === item && this.state.answerLocked
+                          ? "iconHit"
+                          : ""
+                      }`}
+                    />
+                    <TimesIcon
+                      className={`${
+                        this.state.currAnswer === item &&
+                        this.props.questions[this.state.questionNumber]
+                          .continent !== item
+                          ? "iconMiss"
+                          : ""
+                      } `}
+                    />
+                  </div>
+                ))
+              ) : (
+                <div>loading...</div>
+              )}
+            </div>
+            <div className="next-button" onClick={this.submitAnswer}>
+              NEXT
+            </div>
           </div>
         </div>
       </div>
