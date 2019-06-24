@@ -7,7 +7,9 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.scores = JSON.parse(localStorage.getItem("topScores"));
-    this.scores = this.scores.slice(0, 3);
+    if (this.scores) {
+      this.scores = this.scores.slice(0, 3);
+    }
   }
 
   componentDidMount() {

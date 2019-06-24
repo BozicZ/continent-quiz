@@ -16,7 +16,10 @@ const continentAnswers = correct => {
   ];
   let wrongAnswers = continents.filter(item => item !== correct);
   let wrongIndexes = setRandomIndexes(wrongAnswers.length, 2);
-  return wrongIndexes.map(item => wrongAnswers[item]).concat([correct]);
+  return wrongIndexes
+    .map(item => wrongAnswers[item])
+    .concat([correct])
+    .sort(() => Math.random() - 0.5);
 };
 
 const setRandomIndexes = (range, total) => {
