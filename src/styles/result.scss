@@ -1,13 +1,15 @@
 .score-content {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center !important;
 }
 
 .finish-icon {
-  color: blue;
+  color: #0352a6;
   font-size: 48px;
   padding: 5px;
+  width: 124px;
+  margin: 30px;
 }
 
 .total-score {
@@ -15,10 +17,16 @@
 }
 
 .finish-button {
-  margin-top: 30px;
-  border: 1px solid blue;
-  color: blue;
+  margin-top: 60px;
+  border: 2px solid #0352a6;
+  color: #0352a6;
   padding: 15px 60px;
   font-size: 24px;
   border-radius: 15px;
+  cursor: pointer;
+}
+
+.finish-button a {
+  text-decoration: none;
+  color: #0352a6;
 }
