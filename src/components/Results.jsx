@@ -31,7 +31,10 @@ export default function Results(props) {
           to="/"
           onClick={() => {
             const date = new Date();
-            handleLocalStorage(props.location.state.score, date.getTime());
+            handleLocalStorage(
+              props.location.state.score,
+              date.toLocaleDateString()
+            );
           }}
         >
           Finish
