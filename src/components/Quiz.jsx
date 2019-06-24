@@ -38,8 +38,9 @@ class Quiz extends Component {
       questionNumber: 0,
       possibleAnswers: [],
       score: 0,
-      isAnswerCorrect: "",
-      answerLocked: false
+      answerLocked: false,
+      answerStatus: "",
+      currAnswer: ""
     };
 
     this.submitAnswer = this.submitAnswer.bind(this);
@@ -73,31 +74,43 @@ class Quiz extends Component {
   }
 
   onSelectAnswer(answer) {
-    if (this.state.answerLocked) {
-      this.props.questions[this.state.questionNumber].continent === answer
-        ? this.setState({
-            isAnswerCorrect: "correct",
-            score: this.state.score + 750,
-            answerLocked: true
-          })
-        : this.setState({
-            isAnswerCorrect: "incorrect",
-            answerLocked: true
-          });
+    if (!this.state.answerLocked) {
+      if (
+        this.props.questions[this.state.questionNumber].continent === answer
+      ) {
+        this.setState({
+          answerLocked: true,
+          score: this.state.score + 750,
+          answerStatus: "correct",
+          currAnswer: answer
+        });
+      } else {
+        this.setState({
+          answerLocked: true,
+          answerStatus: "incorrect",
+          currAnswer: answer
+        });
+      }
     }
   }
 
   submitAnswer() {
     this.setState({
-      isAnswerCorrect: "",
       answerLocked: false,
+      answerStatus: "",
+      currAnswer: "",
       questionNumber: this.state.questionNumber + 1
     });
   }
 
   render() {
     return this.state.questionNumber === 5 ? (
-      <Redirect to="/results/" />
+      <Redirect
+        to={{
+          pathname: "/results/",
+          state: { score: this.state.score }
+        }}
+      />
     ) : (
       <div>
         <h3>CONTINENT QUIZ</h3>
@@ -116,7 +129,15 @@ class Quiz extends Component {
           <div>
             {this.state.possibleAnswers ? (
               this.state.possibleAnswers.map(item => (
-                <div onClick={() => this.onSelectAnswer(item)} key={item}>
+                <div
+                  onClick={() => this.onSelectAnswer(item)}
+                  key={item}
+                  className={
+                    this.state.currAnswer === item
+                      ? this.state.answerStatus
+                      : ""
+                  }
+                >
                   {item}
                 </div>
               ))

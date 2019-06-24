@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/result.scss";
 import { Link } from "react-router-dom";
 
-export default function Results() {
+export default function Results(props) {
   return (
     <div>
       <h3>VACATION QUIZ</h3>
@@ -10,7 +10,7 @@ export default function Results() {
       <div className="score-content">
         <div className="finish-icon">icon</div>
         <h1>Your Score</h1>
-        <div className="total-score">2,500 pts</div>
+        <div className="total-score">{`${props.location.state.score} pts`}</div>
         <div className="finish-button">
           <Link to="/">Finish</Link>
         </div>
