@@ -181,7 +181,7 @@ class Quiz extends Component {
 }
 
 Quiz.propTypes = {
-  questions: PropTypes.arrayOf(PropTypes.shape({})).isRequired
+  questions: PropTypes.arrayOf(PropTypes.shape({}))
 };
 
 const mapStateToProps = ({ quiz }) => {
