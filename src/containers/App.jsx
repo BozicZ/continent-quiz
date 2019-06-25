@@ -22,12 +22,6 @@ class App extends Component {
     this.state = {};
   }
 
-  componentDidMount() {
-    this.props.dispatch({
-      type: "ADD_QUESTIONS_STARTED"
-    });
-  }
-
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.quiz.questions !== this.props.quiz.questions) {
       const randomIndexes = setRandomIndexes(
