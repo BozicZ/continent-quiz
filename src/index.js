@@ -7,13 +7,13 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import myRootReducer from "./reducers";
 import rootSaga from "./sagas";
 import logger from "redux-logger";
-import "./index.scss";
+import "./styles/index.scss";
 
 import * as serviceWorker from "./serviceWorker";
 
 import App from "./containers/App";
-import Home from "./components/Home";
-import Quiz from "./components/Quiz";
+import Home from "./containers/Home";
+import Quiz from "./containers/Quiz";
 import Results from "./components/Results";
 
 const sagaMiddleware = createSagaMiddleware();

@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import "..//App.scss";
+import "../styles/App.scss";
+import {
+  ADD_QUESTIONS_STARTED,
+  SET_RANDOM_QUESTIONS
+} from "../constants/actionsConstants";
 
 const setRandomIndexes = (range, total) => {
   let count = 0;
@@ -24,7 +28,7 @@ class App extends Component {
 
   componentDidMount() {
     this.props.dispatch({
-      type: "ADD_QUESTIONS_STARTED"
+      type: ADD_QUESTIONS_STARTED
     });
   }
 
@@ -38,7 +42,7 @@ class App extends Component {
         item => this.props.quiz.questions[item]
       );
       this.props.dispatch({
-        type: "SET_RANDOM_QUESTIONS",
+        type: SET_RANDOM_QUESTIONS,
         payload: randomQuestions
       });
     }

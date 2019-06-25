@@ -1,3 +1,5 @@
+@import "../variables.scss";
+
 .score-content {
   display: flex;
   flex-direction: column;
@@ -5,7 +7,7 @@
 }
 
 .finish-icon {
-  color: #0352a6;
+  color: $control-color-third;
   font-size: 48px;
   padding: 5px;
   width: 124px;
@@ -18,15 +20,15 @@
 
 .finish-button {
   margin-top: 60px;
-  border: 2px solid #0352a6;
-  color: #0352a6;
+  border: 2px solid $control-color-third;
+  color: $control-color-third;
   padding: 15px 60px;
   font-size: 24px;
   border-radius: 15px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .finish-button a {
-  text-decoration: none;
-  color: #0352a6;
+  color: $control-color-third;
 }

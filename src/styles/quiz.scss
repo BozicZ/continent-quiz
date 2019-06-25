@@ -1,3 +1,5 @@
+@import "../variables.scss";
+
 .questions-body {
   display: flex;
   flex-direction: column;
@@ -11,8 +13,8 @@
 }
 .next-button {
   margin-top: 30px;
-  background: green;
-  color: white;
+  background: $confirm-color;
+  color: $neutral-color;
   padding: 15px 60px;
   font-size: 24px;
   border-radius: 15px;
@@ -29,33 +31,33 @@
 }
 
 .incorrect {
-  color: #ffffff;
+  color: $neutral-color;
 }
 
 .icon {
   height: 30px;
   margin: 0 20px;
-  color: #feb63d;
+  color: $control-color-main;
 }
 
 .incorrect .icon {
-  color: #ffffff;
+  color: $neutral-color;
 }
 
 .iconHit {
   height: 30px;
   margin: 0 20px;
-  color: green;
+  color: $confirm-color;
 }
 
 .iconMiss {
   height: 30px;
   margin: 0 20px;
-  color: red;
+  color: $reject-color;
 }
 
 .answer {
-  border: 2px solid #feb63d;
+  border: 2px solid $control-color-main;
   padding: 20px;
   border-radius: 15px;
   font-size: 24px;
@@ -67,5 +69,5 @@
 }
 
 .answer.incorrect {
-  background: #feb63d;
+  background: $control-color-main;
 }
