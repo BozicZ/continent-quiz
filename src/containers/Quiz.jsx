@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { ReactComponent as ShapesIcon } from "../svg/shapes.svg";
 import { ReactComponent as CheckIcon } from "../svg/check.svg";
 import { ReactComponent as TimesIcon } from "../svg/times.svg";
@@ -178,6 +179,10 @@ class Quiz extends Component {
     );
   }
 }
+
+Quiz.propTypes = {
+  questions: PropTypes.arrayOf(PropTypes.shape({})).isRequired
+};
 
 const mapStateToProps = ({ quiz }) => {
   return {

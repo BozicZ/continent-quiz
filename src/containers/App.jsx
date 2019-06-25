@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import "../styles/App.scss";
 import {
@@ -54,6 +55,10 @@ class App extends Component {
     return <div className="app-container">{children}</div>;
   }
 }
+
+App.propTypes = {
+  quiz: PropTypes.shape({}).isRequired
+};
 
 const mapStateToProps = ({ quiz }) => {
   return {
