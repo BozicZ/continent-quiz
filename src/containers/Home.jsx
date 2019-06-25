@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { ReactComponent as HomeIcon } from "../svg/home.svg";
 import { ReactComponent as ShapesIcon } from "../svg/shapes.svg";
+import { ADD_QUESTIONS_STARTED } from "../constants/actionsConstants";
 
 class Home extends Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class Home extends Component {
 
   componentDidMount() {
     this.props.dispatch({
-      type: "ADD_QUESTIONS_STARTED"
+      type: ADD_QUESTIONS_STARTED
     });
   }
 
